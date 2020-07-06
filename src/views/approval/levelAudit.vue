@@ -23,8 +23,8 @@
       </el-table-column>
       <el-table-column label="申请人昵称" align="center" prop="usname" show-overflow-tooltip></el-table-column>
       <el-table-column label="团队人数" align="center" prop="team_number" ></el-table-column>
-      <el-table-column label="所属三级昵称" align="center" prop="user_super3_name" how-overflow-tooltip></el-table-column>
-      <el-table-column label="所属三级手机号" align="center" prop="user_super3_telphone" how-overflow-tooltip></el-table-column>
+      <el-table-column label="所属三级昵称" align="center" prop="user_supper3_name" how-overflow-tooltip></el-table-column>
+      <el-table-column label="所属三级手机号" align="center" prop="user_supper3_telphone" how-overflow-tooltip></el-table-column>
       <el-table-column label="用户当前等级" prop="uscsuperlevel" align="center" width="120"></el-table-column>
       <el-table-column label="操作" align="center" width="180" fixed="right">
         <template slot-scope="scope">
@@ -60,11 +60,12 @@
 </template>
 
 <script>
+  import TableCellImg from "src/components/TableCellImg";
   //  tocash
   export default {
     name: 'levelAudit',
 
-    components: {},
+    components: {TableCellImg},
 
     data() {
       return {
