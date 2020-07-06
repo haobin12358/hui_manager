@@ -119,7 +119,7 @@
             <span>元</span>
           </div>
         </el-form-item>
-        <el-form-item label="团队成员升一级" >
+        <el-form-item label="团队成员升三级" >
           <div class="flex-start">
             <el-input v-model.number="commonSetting.levelupthreereward" style="width: 40%;margin: 0 10px;">
             </el-input>
