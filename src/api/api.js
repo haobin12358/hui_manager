@@ -86,7 +86,8 @@ const api = {
   update_supplizer: title + 'supplizer/update',                           // 修改
   get_supplizer: title + 'supplizer/get',                                 // 获取供应商
   delete_supplizer: title + 'supplizer/delete',                           // 删除供应商
-
+  set_user_level:title + 'subcommision/set_user_level',                     //设置用户等级
+  subcommision_get_approval_list: title + 'subcommision/get_approval_list', //获取升级审批流列表
 
 
   //  审批

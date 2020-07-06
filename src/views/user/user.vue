@@ -25,6 +25,13 @@
       <el-table-column label="用户名" align="center" prop="usname" show-overflow-tooltip></el-table-column>
       <el-table-column label="手机号" align="center" prop="ustelphone"></el-table-column>
       <el-table-column label="余 额" align="center" prop="remain"></el-table-column>
+      <el-table-column label="等 级" align="center" prop="uscsuperlevel">
+        <template slot-scope="scope">
+          <el-input class="sort-input" @focus="indexDone(scope,1)" v-model.number="scope.row.uscsuperlevel"
+                    @change="sortChange" maxlength="11"></el-input>
+          <el-button type="text" v-if="scope.$index == index && status == 1" @click="sortChange">保存</el-button>
+        </template>
+      </el-table-column>
       <el-table-column label="浏览量" align="center" prop="usquery"></el-table-column>
       <el-table-column label="上次登录时间" align="center" prop="userlogintime"></el-table-column>
     </el-table>
@@ -38,7 +45,7 @@
 
 <script>
   import TableCellImg from "src/components/TableCellImg";
-
+  const positiveNumberReg = /^([1-9]\d*)$/;   //  正整数
   export default {
     name: 'User',
     data() {
@@ -49,7 +56,9 @@
         userList: [],
         page_size: 10,
         page_num: 1,
-        total: 0
+        total: 0,
+        index:0,
+        status:''
       }
     },
     components: {TableCellImg},
@@ -90,7 +99,38 @@
         this.name = '';
         this.mobile = '';
         this.getUserList();         // 获取数据
-      }
+      },
+      // 记录点击的是哪一行
+      indexDone(scope,status) {
+        this.index = scope.$index;
+        this.status = status;
+      },
+      // 改变轮播图序号
+      sortChange(v) {
+        if(positiveNumberReg.test(this.userList[this.index].uscsuperlevel)) {
+          let params ={
+            set_level:Number(this.userList[this.index].uscsuperlevel),
+            usid: this.userList[this.index].usid
+          } ;
+
+
+          this.$http.post(this.$api.set_user_level, params).then(res => {
+            if (res.data.status == 200) {
+              this.$notify({
+                title: '保存成功',
+                message: '此等级已保存',
+                type: 'success'
+              });
+              this.getUserList();         // 刷新banner
+              this.status = 0 ;
+              this.index = -1;
+            }
+          });
+        }else {
+          this.$message.warning('请输入等级(0/1/2/3)');
+
+        }
+      },
     }
   }
 </script>

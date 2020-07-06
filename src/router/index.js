@@ -273,6 +273,12 @@ export const asyncRouterMap = [
         name: 'ProductAudit',
         component: () => import('src/views/approval/productAudit'),
         meta: {title: '普通商品审批', icon: 'yes', noCache: true, roles: level2}
+      },
+      {
+        path: 'levelAudit',
+        name: 'levelAudit',
+        component: () => import('src/views/approval/levelAudit'),
+        meta: {title: '升级审批', icon: 'yes', noCache: true, roles: level2}
       }
     ]
   },

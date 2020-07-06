@@ -45,7 +45,117 @@
         </el-form-item>
       </el-form>
     </section>
+    <block-title title="升级相关"></block-title>
+    <section class="tool-bar">
+      <el-form inline label-width="140px">
+        <el-form-item label="一级升二级要求：" >
+          <div class="flex-start">
+            <span>分享产生</span>
+            <el-input v-model.number="commonSetting.leveluptwo" style="width: 20%;margin: 0 10px;">
+            </el-input>
+            <span>个一级成员</span>
+          </div>
+        </el-form-item>
+        <el-form-item label="二级升三级要求：" >
+          <div class="flex-start">
+            <span>分享产生</span>
+            <el-input v-model.number="commonSetting.levelupthree" style="width: 20%;margin: 0 10px;">
+            </el-input>
+            <span>个二级成员</span>
+          </div>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="doSaveCommonRate(2)">保存</el-button>
+        </el-form-item>
+      </el-form>
+    </section>
 
+    <block-title title="降级规则"></block-title>
+    <section class="tool-bar">
+      <el-form inline label-width="140px">
+        <div>
+          <el-form-item label="三级降二级：" >
+            <div class="flex-start">
+              <span>考核期内未生成</span>
+              <el-input v-model.number="commonSetting.leveldowntwo" style="width: 8%;margin: 0 10px;">
+              </el-input>
+              <span>个二级成员，每生成1个三级人员，可替代</span>
+              <el-input v-model.number="commonSetting.leveldowntworep" style="width: 8%;margin: 0 10px;">
+              </el-input>
+              <span>个二级成员</span>
+            </div>
+          </el-form-item>
+        </div>
+        <div>
+          <el-form-item label="二级降一级：" >
+            <div class="flex-start">
+              <span>考核期内未生成</span>
+              <el-input v-model.number="commonSetting.leveldownone" style="width: 8%;margin: 0 10px;">
+              </el-input>
+              <span>个一级成员，每生成1个二级人员，可替代</span>
+              <el-input v-model.number="commonSetting.leveldownonerep" style="width: 8%;margin: 0 10px;">
+              </el-input>
+              <span>个一级成员</span>
+            </div>
+          </el-form-item>
+        </div>
+        <div>
+          <el-form-item label="一级降普通：" >
+            <div class="flex-start">
+              <span>考核期内未生成</span>
+              <el-input v-model.number="commonSetting.leveldownzero" style="width: 8%;margin: 0 10px;">
+              </el-input>
+              <span>个普通级成员，每生成1个一级人员，可替代</span>
+              <el-input v-model.number="commonSetting.leveldownzerorep" style="width: 8%;margin: 0 10px;">
+              </el-input>
+              <span>个普通成员</span>
+            </div>
+          </el-form-item>
+        </div>
+        <el-form-item>
+          <el-button type="primary" @click="doSaveCommonRate(2)">保存</el-button>
+        </el-form-item>
+      </el-form>
+    </section>
+
+    <block-title title="奖金规则"></block-title>
+    <section class="tool-bar">
+      <el-form inline label-width="140px">
+        <el-form-item label="团队成员升二级" >
+          <div class="flex-start">
+            <el-input v-model.number="commonSetting.leveluptworeward" style="width: 20%;margin: 0 10px;">
+            </el-input>
+            <span>元</span>
+          </div>
+        </el-form-item>
+        <el-form-item label="团队成员升一级" >
+          <div class="flex-start">
+            <el-input v-model.number="commonSetting.levelupthreereward" style="width: 20%;margin: 0 10px;">
+            </el-input>
+            <span>元</span>
+          </div>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="doSaveCommonRate(2)">保存</el-button>
+        </el-form-item>
+      </el-form>
+    </section>
+
+    <block-title title="考核时间"></block-title>
+    <section class="tool-bar">
+      <el-form inline label-width="140px">
+        <el-form-item label="降级定时检测规则" >
+          <div class="flex-start">
+            <el-input v-model.number="commonSetting.checktime" style="width: 20%;margin: 0 10px;">
+            </el-input>
+            <span>天</span>
+          </div>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="doSaveCommonRate(2)">保存</el-button>
+        </el-form-item>
+      </el-form>
+    </section>
   </div>
 </template>
 

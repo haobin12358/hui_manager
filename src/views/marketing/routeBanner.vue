@@ -32,38 +32,38 @@
         </template>
       </el-table-column>
     </el-table>
-    <block-title title="出游"></block-title>
-    <section class="add-banner tr">
-      <el-button type="primary" icon="el-icon-plus" @click="addClick(1)">新增</el-button>
-    </section>
-    <el-table v-loading="bannerLoading" :data="bannerList" stripe>
-      <el-table-column label="轮播图" align="center" prop="mpbpicture" width="180">
-        <template slot-scope="scope">
-          <table-cell-img :src="[scope.row.mpbpicture]" :key="scope.row.mpbpicture" width="92px" out-width="92px"></table-cell-img>
-        </template>
-      </el-table-column>
-      <!--<el-table-column label="对应商品" align="center" prop="prtitle" show-overflow-tooltip></el-table-column>-->
-      <el-table-column label="对应链接" align="center" prop="contentlink" show-overflow-tooltip></el-table-column>
-      <el-table-column label="不展示/展示" align="center" prop="mpbshow">
-        <template slot-scope="scope">
-          <el-switch v-model="scope.row.mpbshow" @change="bannerShow(scope)" active-color="#409EFF" inactive-color="#DBDCDC">
-          </el-switch>
-        </template>
-      </el-table-column>
-      <el-table-column label="权重" align="center" prop="mpbsort" :render-header="sortHeaderRender">
-        <template slot-scope="scope">
-          <el-input class="sort-input" @focus="indexDone(scope,1)" v-model.number="scope.row.mpbsort"
-                    @change="sortChange" maxlength="11"></el-input>
-          <el-button type="text" v-if="scope.$index == index && status == scope.row.mpbposition" @click="sortChange">保存</el-button>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center" fixed="right" width="180">
-        <template slot-scope="scope">
-          <el-button type="text" @click="editBanner(scope)">编辑</el-button>
-          <el-button type="text" class="danger-text" @click="deleteBanner(scope)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <!--<block-title title="出游"></block-title>-->
+    <!--<section class="add-banner tr">-->
+      <!--<el-button type="primary" icon="el-icon-plus" @click="addClick(1)">新增</el-button>-->
+    <!--</section>-->
+    <!--<el-table v-loading="bannerLoading" :data="bannerList" stripe>-->
+      <!--<el-table-column label="轮播图" align="center" prop="mpbpicture" width="180">-->
+        <!--<template slot-scope="scope">-->
+          <!--<table-cell-img :src="[scope.row.mpbpicture]" :key="scope.row.mpbpicture" width="92px" out-width="92px"></table-cell-img>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+      <!--&lt;!&ndash;<el-table-column label="对应商品" align="center" prop="prtitle" show-overflow-tooltip></el-table-column>&ndash;&gt;-->
+      <!--<el-table-column label="对应链接" align="center" prop="contentlink" show-overflow-tooltip></el-table-column>-->
+      <!--<el-table-column label="不展示/展示" align="center" prop="mpbshow">-->
+        <!--<template slot-scope="scope">-->
+          <!--<el-switch v-model="scope.row.mpbshow" @change="bannerShow(scope)" active-color="#409EFF" inactive-color="#DBDCDC">-->
+          <!--</el-switch>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+      <!--<el-table-column label="权重" align="center" prop="mpbsort" :render-header="sortHeaderRender">-->
+        <!--<template slot-scope="scope">-->
+          <!--<el-input class="sort-input" @focus="indexDone(scope,1)" v-model.number="scope.row.mpbsort"-->
+                    <!--@change="sortChange" maxlength="11"></el-input>-->
+          <!--<el-button type="text" v-if="scope.$index == index && status == scope.row.mpbposition" @click="sortChange">保存</el-button>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+      <!--<el-table-column label="操作" align="center" fixed="right" width="180">-->
+        <!--<template slot-scope="scope">-->
+          <!--<el-button type="text" @click="editBanner(scope)">编辑</el-button>-->
+          <!--<el-button type="text" class="danger-text" @click="deleteBanner(scope)">删除</el-button>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+    <!--</el-table>-->
 
     <el-dialog v-el-drag-dialog title="轮播图" :visible.sync="bannerDialog" top="5vh" @close="initBannerForm" :close-on-click-modal="false">
       <el-form :model="bannerForm" :rules="rules" ref="bannerFormRef" label-position="left"
