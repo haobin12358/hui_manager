@@ -171,44 +171,61 @@
       },
 
       pass(row) {
-            this.$http.post(this.$api.mock_approval, {
-              "avid": row.avid,
-              "avstatus": 'access'
-            }).then(
-              res => {
-                if (res.data.status == 200) {
-                  let resData = res.data,
-                    data = res.data.data;
+        this.$confirm(`确定通过(${row.usname})审批?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$http.post(this.$api.mock_approval, {
+            "avid": row.avid,
+            "avstatus": 'access'
+          }).then(
+            res => {
+              if (res.data.status == 200) {
+                let resData = res.data,
+                  data = res.data.data;
 
-                  this.getList();
-                  this.$notify({
-                    title: '批准通过成功',
-                    type: 'success'
-                  });
-                }
+                this.getList();
+                this.$notify({
+                  title: '批准通过成功',
+                  type: 'success'
+                });
               }
-            )
+            }
+          )
+        }).catch(() => {
+
+        });
+
 
       },
       nopass(row) {
+        this.$confirm( `确定拒绝(${row.usname})审批?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$http.post(this.$api.mock_approval, {
+            "avid": row.avid,
+            "avstatus": 'refuse',
+          }).then(
+            res => {
+              if (res.data.status == 200) {
+                let resData = res.data,
+                  data = res.data.data;
 
-        this.$http.post(this.$api.mock_approval, {
-          "avid": row.avid,
-          "avstatus": 'refuse',
-        }).then(
-          res => {
-            if (res.data.status == 200) {
-              let resData = res.data,
-                data = res.data.data;
-
-              this.getList();
-              this.$notify({
-                title: '批准拒绝成功',
-                type: 'success'
-              });
+                this.getList();
+                this.$notify({
+                  title: '批准拒绝成功',
+                  type: 'success'
+                });
+              }
             }
-          }
-        )
+          )
+        }).catch(() => {
+
+        });
+
       }
     },
 
