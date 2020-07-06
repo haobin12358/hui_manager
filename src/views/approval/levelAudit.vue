@@ -32,15 +32,15 @@
             <el-button type="text" class="success-text" @click="pass(scope.row)">通过</el-button>
             <el-button type="text" class="danger-text" @click="nopass(scope.row)">拒绝</el-button>
           </template>
-          <el-popover :key="scope.row.avid" placement="left" trigger="click" @show="showStep(scope.row)">
-            <div style="padding: 20px;width: 300px;">
-              <el-steps direction="vertical" :active="steps.length">
-                <el-step v-for="item in steps" :title="item.anaction" :key="item.anid"
-                         :description="item.avadname +': '+ item.anabo"></el-step>
-              </el-steps>
-            </div>
-            <el-button slot="reference" type="text" style="margin-left: 10px;">查看记录</el-button>
-          </el-popover>
+          <!--<el-popover :key="scope.row.avid" placement="left" trigger="click" @show="showStep(scope.row)">-->
+            <!--<div style="padding: 20px;width: 300px;">-->
+              <!--<el-steps direction="vertical" :active="steps.length">-->
+                <!--<el-step v-for="item in steps" :title="item.anaction" :key="item.anid"-->
+                         <!--:description="item.avadname +': '+ item.anabo"></el-step>-->
+              <!--</el-steps>-->
+            <!--</div>-->
+            <!--<el-button slot="reference" type="text" style="margin-left: 10px;">查看记录</el-button>-->
+          <!--</el-popover>-->
         </template>
       </el-table-column>
     </el-table>
@@ -171,22 +171,9 @@
       },
 
       pass(row) {
-        this.$prompt(`确认批准?`, '提示', {
-          inputPlaceholder: '审批意见',
-          inputValidator: value => {
-            if (!value) {
-              return '意见不能为空'
-            }
-            if (value.length > 100) {
-              return '意见文本过长(100)'
-            }
-          }
-        }).then(
-          prompt => {
-            this.$http.post(this.$api.deal_approval, {
+            this.$http.post(this.$api.mock_approval, {
               "avid": row.avid,
-              "anaction": 1,
-              "anabo": prompt.value
+              "avstatus": 'access'
             }).then(
               res => {
                 if (res.data.status == 200) {
@@ -201,40 +188,25 @@
                 }
               }
             )
-          }
-        )
+
       },
       nopass(row) {
-        this.$prompt(`确认不批准?`, '提示', {
-          inputPlaceholder: '审批意见',
-          inputValidator: value => {
-            if (!value) {
-              return '意见不能为空'
-            }
-            if (value.length > 100) {
-              return '意见文本过长(100)'
-            }
-          },
-        }).then(
-          prompt => {
-            this.$http.post(this.$api.deal_approval, {
-              "avid": row.avid,
-              "anaction": -1,
-              "anabo": prompt.value
-            }).then(
-              res => {
-                if (res.data.status == 200) {
-                  let resData = res.data,
-                    data = res.data.data;
 
-                  this.getList();
-                  this.$notify({
-                    title: '批准拒绝成功',
-                    type: 'success'
-                  });
-                }
-              }
-            )
+        this.$http.post(this.$api.mock_approval, {
+          "avid": row.avid,
+          "avstatus": 'refuse',
+        }).then(
+          res => {
+            if (res.data.status == 200) {
+              let resData = res.data,
+                data = res.data.data;
+
+              this.getList();
+              this.$notify({
+                title: '批准拒绝成功',
+                type: 'success'
+              });
+            }
           }
         )
       }

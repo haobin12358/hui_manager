@@ -40,9 +40,6 @@
             <template slot="append">%</template>
           </el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="doSaveCommonRate(1)">保存</el-button>
-        </el-form-item>
       </el-form>
     </section>
     <block-title title="升级相关"></block-title>
@@ -63,9 +60,6 @@
             </el-input>
             <span>个二级成员</span>
           </div>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="doSaveCommonRate(2)">保存</el-button>
         </el-form-item>
       </el-form>
     </section>
@@ -112,9 +106,6 @@
             </div>
           </el-form-item>
         </div>
-        <el-form-item>
-          <el-button type="primary" @click="doSaveCommonRate(2)">保存</el-button>
-        </el-form-item>
       </el-form>
     </section>
 
@@ -123,20 +114,17 @@
       <el-form inline label-width="140px">
         <el-form-item label="团队成员升二级" >
           <div class="flex-start">
-            <el-input v-model.number="commonSetting.leveluptworeward" style="width: 20%;margin: 0 10px;">
+            <el-input v-model.number="commonSetting.leveluptworeward" style="width: 40%;margin: 0 10px;">
             </el-input>
             <span>元</span>
           </div>
         </el-form-item>
         <el-form-item label="团队成员升一级" >
           <div class="flex-start">
-            <el-input v-model.number="commonSetting.levelupthreereward" style="width: 20%;margin: 0 10px;">
+            <el-input v-model.number="commonSetting.levelupthreereward" style="width: 40%;margin: 0 10px;">
             </el-input>
             <span>元</span>
           </div>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="doSaveCommonRate(2)">保存</el-button>
         </el-form-item>
       </el-form>
     </section>
@@ -146,16 +134,14 @@
       <el-form inline label-width="140px">
         <el-form-item label="降级定时检测规则" >
           <div class="flex-start">
-            <el-input v-model.number="commonSetting.checktime" style="width: 20%;margin: 0 10px;">
+            <el-input v-model.number="commonSetting.checktime" style="width: 30%;margin: 0 10px;">
             </el-input>
             <span>天</span>
           </div>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="doSaveCommonRate(2)">保存</el-button>
-        </el-form-item>
       </el-form>
     </section>
+      <el-button type="primary" @click="doSaveCommonRate">保存</el-button>
   </div>
 </template>
 
@@ -221,16 +207,9 @@
         //   return
         // }
 
-        switch (sectionNum) {
-          case 1:
-            type = '等级佣金比例';
 
-            saveData = {
-              levelcommision: this.commonSetting.levelcommision
-            };
+        saveData = this.commonSetting
 
-            break;
-        }
         type += '设置';
 
         this.$confirm(`确认保存${type}?`, '提示').then(
