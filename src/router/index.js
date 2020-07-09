@@ -119,7 +119,7 @@ export const asyncRouterMap = [
         name: 'SupplierEdit',
         hidden: true,
         component: () => import('src/views/user/supplierEdit'),
-        meta: {title: '供应商编辑', noCache: true, roles: level2}
+        meta: {title: '供应商编辑', noCache: true, roles: level6}
       },
 
       {
